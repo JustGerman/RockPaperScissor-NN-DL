@@ -1,0 +1,40 @@
+# === ENTORNO VIRTUAL ===
+.venv/
+venv/
+env/
+
+# === DATOS Y MODELOS PESADOS ===
+data/
+exports/
+*.h5
+*.tflite
+*.joblib
+*.onnx
+*.pt
+*.pth
+
+# === CACHE Y ARCHIVOS TEMPORALES ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.swp
+*.bak
+*.DS_Store
+
+# === NOTEBOOKS Y CONFIGURACIONES ===
+.ipynb_checkpoints/
+.vscode/
+*.ipynb_save
+*.ipynb_restore
+
+# === ARCHIVOS DE ENTORNO / CONFIG ===
+.env
+*.config
+*.cfg
+
+# === ARCHIVOS DEL SISTEMA ===
+Thumbs.db
+desktop.ini
