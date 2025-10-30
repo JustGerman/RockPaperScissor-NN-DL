@@ -45,7 +45,7 @@ Este proyecto entrena un modelo de **machine learning (SVM)** para reconocer ges
    ```bash
    git clone https://github.com/tu_usuario/ROCKPAPERSCISSOR-NN-DL.git
    cd ROCKPAPERSCISSOR-NN-DL
-```
+   ```
 
 2. Crear y activar entorno virtual:
     
