@@ -6,7 +6,8 @@ Clasificación de gestos de "Piedra, Papel o Tijera" a partir de landmarks de la
 
 ## 🧠 Descripción del Proyecto
 
-Este proyecto entrena un modelo de **machine learning (SVM)** para reconocer gestos de la mano a partir de coordenadas clave (landmarks) extraídas con **MediaPipe**. El enfoque evita el uso directo de imágenes y se basa en un dataset tabular optimizado para clasificación.
+Este proyecto entrena un modelo de **machine learning (SVM)** para reconocer gestos de la mano a partir de coordenadas clave (landmarks) extraídas con **MediaPipe**.  
+El enfoque evita el uso directo de imágenes y se basa en un dataset tabular optimizado para clasificación.
 
 ---
 
@@ -45,7 +46,7 @@ Este proyecto entrena un modelo de **machine learning (SVM)** para reconocer ges
    ```bash
    git clone https://github.com/tu_usuario/ROCKPAPERSCISSOR-NN-DL.git
    cd ROCKPAPERSCISSOR-NN-DL
-   ```
+	```
 
 2. Crear y activar entorno virtual:
     
@@ -69,28 +70,39 @@ Este proyecto entrena un modelo de **machine learning (SVM)** para reconocer ges
 
 ---
 
-## 📊 Modelo de Clasificación
+## 📊 Resultados del Modelo
 
-- Modelo: **Support Vector Machine (SVC)**
+El modelo SVM entrenado obtuvo los siguientes resultados sobre el conjunto de test:
+
+- **Accuracy global:** ✅ 99.54%
     
-- Kernel: `rbf`
+- **Clases:** `none`, `paper`, `rock`, `scissors`
     
-- Hiperparámetros: `C=10`, `gamma='scale'`
+
+### 📌 Matriz de Confusión:
+
+```
+[[ 28   0   0   0]
+ [  1 139   0   0]
+ [  0   0 134   0]
+ [  0   1   0 135]]
+```
+
+### 📋 Reporte de Clasificación:
+
+|Clase|Precisión|Recall|F1-score|Soporte|
+|---|---|---|---|---|
+|`none`|0.97|1.00|0.98|28|
+|`paper`|0.99|0.99|0.99|140|
+|`rock`|1.00|1.00|1.00|134|
+|`scissors`|1.00|0.99|1.00|136|
+
+- **Macro promedio:** F1 = 0.99
     
-- Preprocesamiento:
+- **Weighted promedio:** F1 = 1.00
     
-    - Escalado con `StandardScaler`
-        
-    - División de datos: 80% train / 20% test
-        
-- Evaluación:
-    
-    - Precisión (`accuracy`)
-        
-    - Matriz de confusión
-        
-    - Reporte de clasificación
-        
+
+🔍 _El modelo es altamente preciso en las 4 clases, con un rendimiento muy equilibrado._
 
 ---
 
@@ -108,12 +120,9 @@ Este proyecto entrena un modelo de **machine learning (SVM)** para reconocer ges
         
     - ✌️ Tijera
         
+    - (Y una clase `none`)
+        
 
 Más detalles en `sobre_datos.txt`
 
 ---
-
-## ✅ Resultados
-
-El modelo logra una **alta precisión** en la tarea de clasificación usando solo los datos numéricos de landmarks. El enfoque es liviano, rápido y efectivo.
-
