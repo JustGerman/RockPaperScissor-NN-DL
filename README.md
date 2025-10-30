@@ -1,4 +1,4 @@
-# ✊🖐✌ ROCKPAPERSCISSOR-NN-DL
+# ✊🖐✌ ROCKPAPERSCISSOR-NN-DL ✌🖐✊
 
 Clasificación de gestos de "Piedra, Papel o Tijera" a partir de landmarks de la mano, usando **MediaPipe** + **SVM** con `scikit-learn`.
 
