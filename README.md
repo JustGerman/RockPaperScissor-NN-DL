@@ -23,7 +23,7 @@ El enfoque evita el uso directo de imágenes y se basa en un dataset tabular opt
 ├── proyecto.ipynb # Notebook principal de entrenamiento y análisis  
 ├── README.md # Este archivo  
 ├── requirements_train.txt # Librerías necesarias  
-└── sobre_datos.txt # Explicación de los datos
+└── sobre_datos.txt # Instrucciones de los datos para descargar
 
 ```
 
