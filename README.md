@@ -145,3 +145,6 @@ Los datos no están incluidos directamente en este repositorio.
 Más información detallada está disponible en el archivo `sobre_datos.txt`.
 
 ---
+### Integrantes:
+- Carlos Ramírez
+- Germán Fernández
