@@ -1,22 +1,111 @@
 # RockPaperScissor-NN-DL
 
-## Objetivo: 
+## 🎯 Objetivo
 
-El objetivo principal de este proyecto es utilizar modelos de Redes Neuronales para poder crear una aplicación en la que se juegue piedra, papel o tijeras en tiempo real. Google tiene una CNN entrenada para poder detectar posiciones especifica de la mano, 21, con precisión, por tanto lo utilizaremos + un clasificador para poder determinar si una imagen corresponde a la representación de una piedra, papel o tijera.
+El objetivo principal de este proyecto es utilizar modelos de Redes Neuronales para crear una aplicación en la que se juegue **Piedra, Papel o Tijeras** en tiempo real.  
+Para ello utilizamos:
 
-## Checklist de objetivos principales:
+- **MediaPipe Hands**, el cual nos entrega 21 puntos clave de la mano con alta precisión.
+- Un **clasificador** entrenado sobre dichos puntos, capaz de reconocer la postura de la mano como:
+  - `rock` (piedra)
+  - `paper` (papel)
+  - `scissors` (tijeras)
+  - `none` (ningún gesto válido del juego)
 
-### Fase de creacion del modelo:
+La clase `none` se incorporó para evitar falsos positivos cuando la mano realiza otra posición distinta a las consideradas.
 
-- Iniciar el proyecto en git, crear un requirements.txt especifico para la parte de entrenamiento del modelo: LISTO
-- Crear un bloque de codigo de bash en el jupyter para crear el entorno virtual: LISTO
-- Importar el dataset e imagenes, y procesarlas para crear conjuntos de entrenamiento, validacion y testeo
-- Probar el modelo de mediapipe junto a una serie de clasificadores para detectar piedra, papel o tijeras
-- Probar los modelos con dataset ampliado mediante transformaciones de las mismas imagenes
+---
 
-### Criterios de éxito:
+## 📦 Dataset
 
-- Precisión mínima: 98%
-- Se tarde menos de 100ms en procesar un modelo (por lo menos en un inicio. Ojala conseguir la mejor experiencia posible con el tiempo más óptimo, de ahí en el deployment podemos hacer testeo y optimización)
+Se utilizaron dos fuentes principales:
 
-## Fase de deployment:
+1. **Imágenes del dataset original** para las clases:  
+   - `rock`
+   - `paper`
+   - `scissors`
+
+2. **Imágenes propias** tomadas con nuestras cámaras y manos reales, para construir la clase:
+   - `none`, que incluye:
+     - Mano cerrada sin formar exactamente piedra
+     - Mano con todos los dedos extendidos en posiciones no válidas
+     - Dos dedos levantados en posiciones aleatorias
+     - Otras combinaciones que no corresponden a piedra, papel o tijeras
+
+Esto permite que el modelo **aprenda a distinguir cuándo la mano NO está realizando un gesto válido del juego**.
+
+---
+
+## ✅ Checklist de Objetivos
+
+### Fase de creación del modelo
+
+- [x] Iniciar el proyecto en Git y crear `requirements.txt` para entrenamiento
+- [x] Crear entorno virtual desde Jupyter (y activar desde terminal)
+- [ ] Importar dataset e imágenes + procesarlas en formato estructurado
+- [ ] Separar dataset en **train / validation / test**
+- [ ] Probar modelos de clasificación:
+  - SVM
+  - MLP / NN
+  - Árboles / RandomForest
+- [ ] Aumentar dataset con *data augmentation*
+- [ ] Evaluar métricas y optimizar hiperparámetros
+
+### Criterios de éxito
+
+- Precisión mínima esperada: **98%**
+- Tiempo de inferencia: **< 100ms** por predicción (para uso en tiempo real)
+
+---
+
+## 🚀 Fase de Deployment (Próxima)
+
+- Integración del modelo con cámara en tiempo real (OpenCV / MediaPipe en modo streaming)
+- Interfaz gráfica o juego interactivo
+- Optimización de modelo para baja latencia
+
+---
+
+## 🗂 Estructura del Proyecto (Recomendada)
+
+```
+
+RockPaperScissor-NN-DL/  
+│  
+├── data/  
+│ ├── rock/  
+│ ├── paper/  
+│ ├── scissors/  
+│ └── none/  
+│  
+├── models/  
+│ └── classifier.pkl (o .h5, dependiendo del modelo final)  
+│  
+├── notebooks/  
+│ └── training.ipynb  
+│  
+├── src/  
+│ ├── preprocess.py  
+│ ├── train.py  
+│ └── realtime.py  
+│  
+└── requirements.txt
+
+```
+
+---
+
+## ✨ Notas Adicionales
+
+- La utilización de la clase `none` es clave para reducir falsos positivos y mejorar estabilidad del modelo.
+- La optimización final se hará luego de pruebas en tiempo real.
+- Para el entrenamiento, se recomienda iniciar con SVM o MLP debido a su rapidez y simplicidad.
+
+---
+
+## 👥 Autores
+
+- *Germán Fernández*
+- *Carlos Ramírez*  
+
+---
