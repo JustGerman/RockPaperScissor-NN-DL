@@ -108,21 +108,40 @@ El modelo SVM entrenado obtuvo los siguientes resultados sobre el conjunto de te
 
 ## 🖼️ Dataset
 
-- Origen: `drgfreeman/rockpaperscissors` en Kaggle
-    
-- Formato: CSV con coordenadas `x, y, z` de landmarks de la mano
-    
-- Clases:
-    
-    - ✊ Piedra
-        
-    - ✋ Papel
-        
-    - ✌️ Tijera
-        
-    - (Y una clase `none`)
-        
+Los datos no están incluidos directamente en este repositorio.
 
-Más detalles en `sobre_datos.txt`
+### 📥 Instrucciones para obtener los datos:
+
+1. Accede al siguiente enlace de Google Drive:
+   👉 [Descargar datos](https://drive.google.com/drive/folders/1VNuNvp-isfi-axu9RFENX2F12TG_ehVw?usp=sharing)
+
+2. Dentro encontrarás carpetas como:
+   - `Dataset_manos`
+   - `dataset_no_rps`
+   - `dataset_no_rps_augmented`
+
+1. Descarga todo y colócalo en una carpeta llamada `data` en la raíz del proyecto, así:
+
+```
+
+📦 ROCKPAPERSCISSOR-NN-DL  
+└── data/  
+├── Dataset_manos/  
+├── dataset_no_rps/  
+└── dataset_no_rps_augmented/
+
+```
+
+### 💡 Sobre los datos:
+
+- Los datasets contienen imágenes y/o landmarks para las clases:
+  - ✊ `rock`
+  - ✋ `paper`
+  - ✌️ `scissors`
+  - ❌ `none` (ningún gesto)
+
+- Algunos datasets contienen **datos aumentados** (`_augmented`) para mejorar la robustez del modelo.
+
+Más información detallada está disponible en el archivo `sobre_datos.txt`.
 
 ---
