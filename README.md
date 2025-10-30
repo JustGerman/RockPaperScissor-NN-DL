@@ -1,111 +1,119 @@
-# RockPaperScissor-NN-DL
+# ✊🖐✌ ROCKPAPERSCISSOR-NN-DL
 
-## 🎯 Objetivo
-
-El objetivo principal de este proyecto es utilizar modelos de Redes Neuronales para crear una aplicación en la que se juegue **Piedra, Papel o Tijeras** en tiempo real.  
-Para ello utilizamos:
-
-- **MediaPipe Hands**, el cual nos entrega 21 puntos clave de la mano con alta precisión.
-- Un **clasificador** entrenado sobre dichos puntos, capaz de reconocer la postura de la mano como:
-  - `rock` (piedra)
-  - `paper` (papel)
-  - `scissors` (tijeras)
-  - `none` (ningún gesto válido del juego)
-
-La clase `none` se incorporó para evitar falsos positivos cuando la mano realiza otra posición distinta a las consideradas.
+Clasificación de gestos de "Piedra, Papel o Tijera" a partir de landmarks de la mano, usando **MediaPipe** + **SVM** con `scikit-learn`.
 
 ---
 
-## 📦 Dataset
+## 🧠 Descripción del Proyecto
 
-Se utilizaron dos fuentes principales:
-
-1. **Imágenes del dataset original** para las clases:  
-   - `rock`
-   - `paper`
-   - `scissors`
-
-2. **Imágenes propias** tomadas con nuestras cámaras y manos reales, para construir la clase:
-   - `none`, que incluye:
-     - Mano cerrada sin formar exactamente piedra
-     - Mano con todos los dedos extendidos en posiciones no válidas
-     - Dos dedos levantados en posiciones aleatorias
-     - Otras combinaciones que no corresponden a piedra, papel o tijeras
-
-Esto permite que el modelo **aprenda a distinguir cuándo la mano NO está realizando un gesto válido del juego**.
+Este proyecto entrena un modelo de **machine learning (SVM)** para reconocer gestos de la mano a partir de coordenadas clave (landmarks) extraídas con **MediaPipe**. El enfoque evita el uso directo de imágenes y se basa en un dataset tabular optimizado para clasificación.
 
 ---
 
-## ✅ Checklist de Objetivos
-
-### Fase de creación del modelo
-
-- [x] Iniciar el proyecto en Git y crear `requirements.txt` para entrenamiento
-- [x] Crear entorno virtual desde Jupyter (y activar desde terminal)
-- [ ] Importar dataset e imágenes + procesarlas en formato estructurado
-- [ ] Separar dataset en **train / validation / test**
-- [ ] Probar modelos de clasificación:
-  - SVM
-  - MLP / NN
-  - Árboles / RandomForest
-- [ ] Aumentar dataset con *data augmentation*
-- [ ] Evaluar métricas y optimizar hiperparámetros
-
-### Criterios de éxito
-
-- Precisión mínima esperada: **98%**
-- Tiempo de inferencia: **< 100ms** por predicción (para uso en tiempo real)
-
----
-
-## 🚀 Fase de Deployment (Próxima)
-
-- Integración del modelo con cámara en tiempo real (OpenCV / MediaPipe en modo streaming)
-- Interfaz gráfica o juego interactivo
-- Optimización de modelo para baja latencia
-
----
-
-## 🗂 Estructura del Proyecto (Recomendada)
+## 📁 Estructura de Archivos
 
 ```
 
-RockPaperScissor-NN-DL/  
-│  
-├── data/  
-│ ├── rock/  
-│ ├── paper/  
-│ ├── scissors/  
-│ └── none/  
-│  
-├── models/  
-│ └── classifier.pkl (o .h5, dependiendo del modelo final)  
-│  
-├── notebooks/  
-│ └── training.ipynb  
-│  
-├── src/  
-│ ├── preprocess.py  
-│ ├── train.py  
-│ └── realtime.py  
-│  
-└── requirements.txt
+📦 ROCKPAPERSCISSOR-NN-DL  
+├── .gitignore  
+├── dataset_landmarks.csv # Dataset con coordenadas de mano  
+├── dataset_landmarks_full.csv # Dataset extendido con landmarks adicionales  
+├── dataset_landmarks_no_rps.csv # Dataset sin las clases objetivo  
+├── proyecto.ipynb # Notebook principal de entrenamiento y análisis  
+├── README.md # Este archivo  
+├── requirements_train.txt # Librerías necesarias  
+└── sobre_datos.txt # Explicación de los datos
 
 ```
 
 ---
 
-## ✨ Notas Adicionales
+## ⚙️ Tecnologías Usadas
 
-- La utilización de la clase `none` es clave para reducir falsos positivos y mejorar estabilidad del modelo.
-- La optimización final se hará luego de pruebas en tiempo real.
-- Para el entrenamiento, se recomienda iniciar con SVM o MLP debido a su rapidez y simplicidad.
+- Python 3.12
+- [MediaPipe](https://google.github.io/mediapipe/) para extracción de landmarks
+- scikit-learn (SVC)
+- pandas / numpy / matplotlib
+- Jupyter Notebook
+- `kagglehub` para descarga del dataset
+
+---
+
+## 🚀 Instrucciones de Uso
+
+1. Clonar este repositorio:
+   ```bash
+   git clone https://github.com/tu_usuario/ROCKPAPERSCISSOR-NN-DL.git
+   cd ROCKPAPERSCISSOR-NN-DL
+```
+
+2. Crear y activar entorno virtual:
+    
+    ```bash
+    python3 -m venv .venv_rps
+    source .venv_rps/bin/activate  # En Windows: .venv_rps\Scripts\activate
+    ```
+    
+3. Instalar dependencias:
+    
+    ```bash
+    pip install -r requirements_train.txt
+    ```
+    
+4. Ejecutar el notebook:
+    
+    ```bash
+    jupyter notebook proyecto.ipynb
+    ```
+    
 
 ---
 
-## 👥 Autores
+## 📊 Modelo de Clasificación
 
-- *Germán Fernández*
-- *Carlos Ramírez*  
+- Modelo: **Support Vector Machine (SVC)**
+    
+- Kernel: `rbf`
+    
+- Hiperparámetros: `C=10`, `gamma='scale'`
+    
+- Preprocesamiento:
+    
+    - Escalado con `StandardScaler`
+        
+    - División de datos: 80% train / 20% test
+        
+- Evaluación:
+    
+    - Precisión (`accuracy`)
+        
+    - Matriz de confusión
+        
+    - Reporte de clasificación
+        
 
 ---
+
+## 🖼️ Dataset
+
+- Origen: `drgfreeman/rockpaperscissors` en Kaggle
+    
+- Formato: CSV con coordenadas `x, y, z` de landmarks de la mano
+    
+- Clases:
+    
+    - ✊ Piedra
+        
+    - ✋ Papel
+        
+    - ✌️ Tijera
+        
+
+Más detalles en `sobre_datos.txt`
+
+---
+
+## ✅ Resultados
+
+El modelo logra una **alta precisión** en la tarea de clasificación usando solo los datos numéricos de landmarks. El enfoque es liviano, rápido y efectivo.
+
