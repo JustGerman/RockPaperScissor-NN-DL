@@ -1,40 +1,32 @@
-# === ENTORNO VIRTUAL ===
+# === Entornos virtuales ===
 .venv/
-venv/
-env/
+.venv_rps/
 
-# === DATOS Y MODELOS PESADOS ===
+# === Carpeta de datos sin versionar (imágenes, brutos, etc.) ===
 data/
-exports/
-*.h5
-*.tflite
-*.joblib
-*.onnx
-*.pt
-*.pth
 
-# === CACHE Y ARCHIVOS TEMPORALES ===
+# === Archivos temporales y cachés ===
+.ipynb_checkpoints/
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-*.log
-*.tmp
-*.swp
-*.bak
-*.DS_Store
 
-# === NOTEBOOKS Y CONFIGURACIONES ===
-.ipynb_checkpoints/
-.vscode/
-*.ipynb_save
-*.ipynb_restore
-
-# === ARCHIVOS DE ENTORNO / CONFIG ===
-.env
-*.config
-*.cfg
-
-# === ARCHIVOS DEL SISTEMA ===
+# === Archivos de sistema ===
 Thumbs.db
 desktop.ini
+.DS_Store
+
+# === Archivos de configuración local o logs ===
+*.log
+*.tmp
+
+# === Archivos de documentación y requisitos ===
+!README*
+!requirements*
+!sobre_datos*
+
+# === Datasets procesados (sí se versionan) ===
+!*.csv
+
+# === Carpeta de proyecto principal (sí se versiona) ===
+!proyecto/
